@@ -1,0 +1,380 @@
+/* src/App.css - global styles used by the app (UPDATED)
+   Includes glassy buttons + chakra color themes for Assessment / Polls
+*/
+
+:root {
+  --brand-color: #0f2136;
+  --glass-bg: rgba(255,255,255,0.92);
+  --muted: #666;
+  --shadow-strong: rgba(20,20,40,0.12);
+  --max-width: 1280px;
+  /* Chakra palette for accents (left → right) */
+  --chakra-1: #E53935;
+  --chakra-2: #FB8C00;
+  --chakra-3: #FDD835;
+  --chakra-4: #43A047;
+  --chakra-5: #1E88E5;
+  --chakra-6: #5E35B1;
+  --chakra-7: #7B3FE4;
+}
+
+/* reset */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: var(--brand-color); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+/* full-screen background video */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.62;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+/* overlay sits above video */
+.overlay {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
+/* header brand */
+.brand-header {
+  width: 100%;
+  padding: 18px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  z-index: 3;
+}
+.brand-inner {
+  font-weight: 900;
+  font-size: 48px;
+  letter-spacing: 0.6px;
+  color: #122331;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* centered login card */
+.center-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 80px;
+}
+.glass-card {
+  width: 480px;
+  max-width: calc(100% - 40px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.90));
+  border-radius: 18px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: 0 20px 60px var(--shadow-strong);
+  backdrop-filter: blur(6px) saturate(1.05);
+}
+.glass-title {
+  margin: 8px 0 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+.glass-sub {
+  margin: 6px 0 16px;
+  color: var(--muted);
+}
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(90deg,#6b37f5,#ff6b6b);
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(100,60,180,0.12);
+  margin-bottom: 10px;
+}
+.g-letter {
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-weight: 800;
+}
+.small-note { margin-top: 8px; color: #b5b5b5; font-size: 13px; }
+
+/* signed container holds assessment */
+.signed-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 18px;
+}
+
+/* music button */
+.music-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+/* congrats overlay */
+.congrats-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.congrats-card {
+  pointer-events: auto;
+  width: 420px;
+  max-width: 92%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,252,0.98));
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(20,20,40,0.16);
+}
+
+/* -------------------------
+   NEW: glassy buttons + tabs
+   ------------------------- */
+
+/* general glassy small button (used for music, signout inside profile card if needed) */
+.glass-btn {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.16);
+  backdrop-filter: blur(10px) saturate(1.04);
+  color: #0b2230;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  box-shadow: 0 6px 18px rgba(10,20,30,0.06);
+}
+.glass-btn:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.28);
+  box-shadow: 0 12px 30px rgba(10,20,30,0.12);
+}
+.glass-btn.danger {
+  background: linear-gradient(90deg, rgba(240,77,77,0.16), rgba(255,90,90,0.12));
+  border: 1px solid rgba(240,77,77,0.28);
+  color: #871b1b;
+}
+.glass-btn.icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* large glassy tab/button used for top nav (Self Assessment / Polls) */
+.glass-big-btn {
+  padding: 14px 26px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(12px);
+  color: #072733;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  min-width: 170px;
+  text-align: center;
+  box-shadow: 0 8px 26px rgba(10,20,30,0.06);
+}
+.glass-big-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: rgba(255,255,255,0.26);
+  box-shadow: 0 18px 40px rgba(10,20,30,0.12);
+}
+
+/* chakra themed variants for the two main buttons */
+.btn-assessment {
+  background: linear-gradient(135deg, rgba(30,136,229,0.12), rgba(123,63,228,0.06));
+  border: 1px solid rgba(30,136,229,0.18);
+  color: #0e2940;
+}
+.btn-assessment:hover {
+  background: linear-gradient(135deg, rgba(30,136,229,0.18), rgba(123,63,228,0.10));
+  box-shadow: 0 18px 48px rgba(30,136,229,0.12);
+}
+
+.btn-polls {
+  background: linear-gradient(135deg, rgba(245,75,130,0.12), rgba(94,53,177,0.06));
+  border: 1px solid rgba(124,58,237,0.14);
+  color: #1a2132;
+}
+.btn-polls:hover {
+  background: linear-gradient(135deg, rgba(245,75,130,0.18), rgba(94,53,177,0.10));
+  box-shadow: 0 18px 48px rgba(124,58,237,0.10);
+}
+
+/* tab classes used by app.jsx */
+.tab {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.94);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tab.active {
+  background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.98));
+  box-shadow: 0 10px 30px rgba(12,30,40,0.06);
+  transform: translateY(-2px);
+}
+
+/* small floating music icon (used in signed view) */
+.music-floating {
+  position: fixed;
+  right: 18px;
+  top: 120px;
+  z-index: 30;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 10px 26px rgba(10,20,30,0.12);
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+.music-floating:hover { transform: translateY(-4px) }
+
+/* profile card container (single) */
+.profile-card {
+  width: 820px;
+  max-width: calc(100% - 40px);
+  margin: 6px auto 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 20px 60px rgba(20,20,40,0.06);
+  gap: 12px;
+}
+
+/* profile left info */
+.profile-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(10,20,30,0.06);
+  border: 3px solid rgba(255,255,255,0.6);
+}
+.profile-meta { text-align: left; }
+.profile-meta h4 { margin: 0; font-size: 18px; font-weight: 800; }
+.profile-meta p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+/* layout for tab area / content */
+.tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* containers */
+.signed-main {
+  width: 100%;
+  padding: 18px 8px;
+}
+
+/* center content wrapper */
+.content-wrapper {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 18px;
+}
+
+/* subtle chakra dot row (used by Assessment for progress) */
+.chakra-row { display:flex; gap:10px; align-items:center; }
+
+/* rounded glass card used for poll placeholder or main card wrap */
+.card-wrap {
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94));
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(20,20,40,0.06);
+}
+
+/* small saving toast */
+.submitting-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 26px;
+  background: rgba(10,20,30,0.9);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  z-index: 50;
+  font-weight: 600;
+}
+
+/* responsive */
+@media (max-width: 980px) {
+  .brand-inner { font-size: 36px; }
+  .profile-card { width: calc(100% - 32px); padding: 14px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tabs-bar { flex-wrap: wrap; gap: 10px; }
+  .glass-big-btn { min-width: 140px; padding: 12px 18px; }
+}
+
+@media (max-width: 680px) {
+  .brand-inner { font-size: 28px; }
+  .glass-card { width: 92%; padding: 16px; }
+  .glass-big-btn { width: 100%; }
+}
+/* rainbow hover effect for tabs */
+.tab:hover:not(.active) {
+  background: linear-gradient(270deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 1400% 1400%;
+  animation: rainbow 5s ease infinite;
+  color: white;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* greyed/disabled active tab */
+.tab.active {
+  background: #ddd;
+  color: #666;
+  cursor: not-allowed;
+}
