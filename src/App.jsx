@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Assessment from "./Assessment";
-import Polls from "./Polls"; // ✅ new import
+import Polls from "./Polls"; // ✅ ensure src/Polls.jsx exists
 import { auth } from "./firebase";
 import {
   GoogleAuthProvider,
@@ -14,12 +14,12 @@ import {
 import bgVideo from "./assets/bgvideo.mov";
 import bgMusic from "./assets/music.mp3";
 
-// Lottie assets
-const DOG_LOTTIE = "/src/assets/Happy%20Dog.json";
-const CUP_LOTTIE = "/src/assets/Cup.json";
+// Lottie assets: use bundler-safe URLs so Vite/Netlify can serve them correctly
+const DOG_LOTTIE = new URL("./assets/Happy Dog.json", import.meta.url).href;
+const CUP_LOTTIE = new URL("./assets/Cup.json", import.meta.url).href;
 
 // fallback avatar
-import fallbackAvatar from "./assets/react.svg"; // replace with avatar.png if you add
+import fallbackAvatar from "./assets/react.svg"; // keep as-is
 
 // Sheet endpoint for assessment save (Assessment only)
 const SHEET_ENDPOINT_URL =
@@ -225,10 +225,7 @@ export default function App() {
                 <Assessment user={user} onDone={handleDone} />
               )}
 
-              {activeTab === "polls" && (
-                // ✅ Now using the Polls component
-                <Polls user={user} />
-              )}
+              {activeTab === "polls" && <Polls user={user} />}
             </div>
           </main>
         )}
