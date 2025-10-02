@@ -15,7 +15,7 @@ import bgVideo from "./assets/bgvideo.mov";
 import bgMusic from "./assets/music.mp3";
 
 // Lottie assets: use bundler-safe URLs so Vite/Netlify can serve them correctly
-const DOG_LOTTIE = new URL("./assets/Happy Dog.json", import.meta.url).href;
+const DOG_LOTTIE = new URL("./assets/happy-dog.json", import.meta.url).href;
 const CUP_LOTTIE = new URL("./assets/Cup.json", import.meta.url).href;
 
 // fallback avatar
